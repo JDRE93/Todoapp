@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Mi Lista de Tareas
+{% endblock %}
+
+{% block content %}
+    <h1>Mis Tareas</h1>
+    <a href="{{ url_for('create_task') }}" class="btn btn-success mb-3">Añadir Nueva Tarea</a>
+
+    <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item">
+                <form method="POST" action="{{ url_for('update_task', task_id=task.id) }}">
+                    <input type="checkbox" name="completada" {% if task.completada %} checked {% endif %} onchange="this.form.submit()">
+                    <span {% if task.completada %} style="text-decoration: line-through;" {% endif %}>
+                        {{ task.tarea }}
+                    </span>
+                </form>
+            </li>
+        {% else %}
+            <li class="list-group-item">No hay tareas pendientes.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

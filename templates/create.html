@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   Añadir Nueva Tarea"
+{% endblock %}
+
+    
+{% block content %}
+    <div class="container mt-5" style="max-width: 600px;">
+        <h1 class="mb-4">Añadir Nueva Tarea</h1>
+
+        <form method="POST">
+            
+            <div class="mb-3">
+                <label for="tarea" class="form-label">Descripción de la Tarea:</label>
+                <textarea class="form-control" id="tarea" name="tarea" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="fecha_vencimiento" class="form-label">Fecha de Vencimiento (Opcional):</label>
+                <input type="date" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar Tarea</button>
+            <a href="{{ url_for('pagina_de_inicio') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}
