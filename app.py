@@ -3,6 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime  
 from flask_migrate import Migrate 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 app = Flask(__name__)
@@ -17,6 +20,11 @@ class Task(db.Model):
     completada = db.Column(db.Boolean, nullable = False, default = False)
     tarea = db.Column(db.Text, nullable = False)
     fecha_vencimiento = db.Column(db.DateTime, nullable = True)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.Text, nullable = False, unique = True)
+    password_hash = db.Column(db.Text, nullable = False)
 
 @app.route('/')
 def pagina_de_inicio():
